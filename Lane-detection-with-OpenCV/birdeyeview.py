@@ -57,7 +57,7 @@ masked_img = cv2.bitwise_and(PT_img, mask)
 
 from read_txt import read_coordinate
 
-file_path = 'C:\\Users\\kkb99\\Desktop\\detection\\yolov5\\runs\\detect\\exp3\\labels\\trans_img.txt'
+file_path = 'C:\\Users\\pc\\Desktop\\Obstacle_detection\\yolov5\\runs\\detect\\exp2\\labels\\trans_img.txt'
 bbox = read_coordinate(file_path, masked_img)
 
 #print(*bbox)
@@ -72,3 +72,5 @@ masked_img = cv2.bitwise_and(masked_img, mask)
 cv2.imshow('img', PT_img)
 cv2.imshow('after yolo', masked_img)
 cv2.waitKey(0)
+cv2.imwrite('C:\\Users\\pc\\Desktop\\PT_img.jpg', PT_img)
+cv2.imwrite('C:\\Users\\pc\\Desktop\\masked_img.jpg', masked_img)
