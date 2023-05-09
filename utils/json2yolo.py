@@ -50,7 +50,10 @@ def json2yolo(dir_path, save_dir):
 
             bboxes.append(bbox)
             # convert category_id from 381 to 440 to class_id from 0 to 59
-            class_id.append(data['category_id']-381)
+            if data['category_id'] == 440:
+                class_id.append(data['category_id']-387)
+            else:
+                class_id.append(data['category_id']-381)
 
         # save yolo txt
         save_path = save_dir + file_name + '.txt'
