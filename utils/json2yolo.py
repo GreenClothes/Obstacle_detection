@@ -49,9 +49,11 @@ def json2yolo(dir_path, save_dir):
                 bbox = convert_polyline(img_size, data['polyline'])
 
             bboxes.append(bbox)
-            # convert category_id from 381 to 440 to class_id from 0 to 59
+            # convert category_id from 381 to 440 to class_id from 0 to 52
             if data['category_id'] == 440:
-                class_id.append(data['category_id']-387)
+                class_id.append(data['category_id']-388)
+            elif data['category_id'] >= 424:
+                class_id.append(data['category_id']-382)
             else:
                 class_id.append(data['category_id']-381)
 
