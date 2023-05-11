@@ -1,0 +1,29 @@
+# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+# COCO128 dataset https://www.kaggle.com/ultralytics/coco128 (first 128 images from COCO train2017) by Ultralytics
+# Example usage: python train.py --data coco128.yaml
+# parent
+# ├── yolov5
+# └── datasets
+#     └── coco128  ← downloads here (7 MB)
+
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+# path: ../datasets/coco128  # dataset root dir
+train: C:\Users\pc\Desktop\dataset\DATA\train\train.txt  # train images (relative to 'path') 128 images
+val: C:\Users\pc\Desktop\dataset\DATA\val\val.txt  # val images (relative to 'path') 128 images
+test:  # test images (optional)
+
+# Classes
+nc: 53
+names: ["roadlane1", "roadlane2", "roadlane3", "roadlane4", "roadlane5", "roadlane6", "roadlane7", "roadlane8",
+ "roadlane_ban1", "roadlane_ban2", "roadlane_ban3", "guidance1", "guidance2",
+ "direction_ban1", "direction_ban2", "direction_ban3", "direction_ban4", "direction_ban5", "direction_ban6", "direction_ban7",
+ "speed_restriction1", "speed_restriction2", "protection_zone1", "protection_zone2", "protection_zone3",
+ "direction_guidance1", "direction_guidance2", "direction_guidance3", "direction_guidance4", "direction_guidance5",
+ "stop_lane", "crosswalk1", "crosswalk2", "crosswalk3",
+ "direction1", "direction2", "direction3", "direction4", "direction5", "direction6", "direction7",
+ "etc1", "etc2", "etc3", "etc4", "etc5", "etc6", "etc7", "etc8", "etc9", "etc10", "etc11", "guidance"]
+
+
+# Download script/URL (optional)
+# download: https://ultralytics.com/assets/coco128.zip
