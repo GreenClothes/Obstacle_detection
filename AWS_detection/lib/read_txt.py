@@ -24,6 +24,7 @@ def _Read_coordinate(file_path, img_h, img_w, road_mark=False):
         line[4] = int(line[4] * img_h)
 
         # line[0] : class, 0 : dummy data for dimension
+        # Sequence : left upper, right upper, right lower, left lower
         coordinate = np.array([[line[0], 0],
                                [line[1] - line[3]//2, line[2] - line[4]//2],
                                [line[1] + line[3]//2, line[2] - line[4]//2],
