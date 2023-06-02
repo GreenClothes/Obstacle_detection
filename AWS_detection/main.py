@@ -21,6 +21,8 @@ from glob import glob
 
 from lib.VAEmodel import _Load_model
 from lib.read_txt import _Read_coordinate
+from lib.ROI import _XY2ROI
+from lib.perspective_trans import _Ptrans
 import lib.param as P
 
 from yolov5.detect import run
@@ -43,3 +45,24 @@ roadmark_bbox = os.listdir(roadmark_bbox_dir)
 bbox_roadmark_xy = _Read_coordinate(file_path=roadmark_bbox_dir+roadmark_bbox[0], img_h=P._img_h, img_w=P._img_w)
 
 # Determine area for detecting
+road_area = _XY2ROI(bbox_car_xy, bbox_roadmark_xy)
+
+# Perspective transforming to road areas for VAE
+road_area_Ptrans = _Ptrans(road_area)
+
+# VAE for detecting obstacles
+VAE = _Load_model()
+VAE.load_weights()
+road_img = np.array(road_area_Ptrans)
+road_img = road_img.astype(np.float32) / 255.
+pred = VAE.predict(road_img)
+result = []
+
+for i in range(road_area_Ptrans.shape[0]):
+    r, g, b = cv2.split(road_area_Ptrans[i]-pred[i])
+    img_flat = (r+g+b).flatten()
+    if np.percentile(img_flat, 80, method='higher') >= P._VAE_threshold:
+        result.append(i+1)
+
+# result is the road lane that obstacles are on
+print(result)
