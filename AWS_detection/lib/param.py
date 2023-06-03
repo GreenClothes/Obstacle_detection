@@ -1,6 +1,7 @@
 import os
 
-_source_img_dir = 'C:\\Users\\pc\\Desktop\\dataset\\yolo_src\\brick.png'
+#_source_img_dir = 'C:\\Users\\pc\\Desktop\\dataset\\yolo_src\\brick.png'
+_source_img_dir = os.getcwd()+'\\yolov5\\data\\images\\detect\\test.png'
 _source_car_weights_dir = os.getcwd()+'\\yolov5\\weights\\yolov5s.pt'
 _source_roadmark_weights_dir = os.getcwd()+'\\yolov5\\weights\\best.pt'
 _save_txt = True
@@ -14,5 +15,5 @@ _img_w = 1920
 #_ROI = [[0, 0.86], [0.31, 0.68], [0.79, 0.68], [1, 0.82], [1, 1], [0, 1]]
 #_ROI = [[0.31, 0.6], [0.79, 0.6], [1, 1], [0, 1]]
 _lane_classes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] # road lane classes
-_VAE_weights_dir = 'C:\\Users\\pc\\Desktop\\road\\weights\\checkpoint200\\'
+_VAE_weights_dir = 'C:/Users/pc/Desktop/road/weights/checkpoint200/'
 _VAE_threshold = 0.08
