@@ -1,5 +1,5 @@
 import cv2, numpy as np
-from param import _img_w, _img_h, _source_img_dir
+from lib.param import _img_w, _img_h, _source_img_dir
 
 def _Ptrans(road):
     img = cv2.imread(_source_img_dir, cv2.IMREAD_COLOR)
