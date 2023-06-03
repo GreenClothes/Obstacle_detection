@@ -33,7 +33,7 @@ run(weights=P._source_car_weights_dir, source=P._source_img_dir, save_txt=P._sav
 
 # Detect road marks
 run(weights=P._source_roadmark_weights_dir, source=P._source_img_dir, save_txt=P._save_txt,
-    classes=P._classes, nosave=P._nosave, name=P._save_road_mark_name)
+    nosave=P._nosave, name=P._save_road_mark_name)
 '''
 # Get bboxes coordinates
 car_bbox_dir = os.getcwd()+P._detect_result_dir+P._save_car_name+'\\labels\\'
@@ -46,23 +46,31 @@ bbox_roadmark_xy = _Read_coordinate(file_path=roadmark_bbox_dir+roadmark_bbox[0]
 
 # Determine area for detecting
 road_area = _XY2ROI(bbox_car_xy, bbox_roadmark_xy)
-
+'''
 # Perspective transforming to road areas for VAE
 road_area_Ptrans = _Ptrans(road_area)
 
 # VAE for detecting obstacles
 VAE = _Load_model()
-VAE.load_weights()
+VAE.load_weights(P._VAE_weights_dir)
 road_img = np.array(road_area_Ptrans)
 road_img = road_img.astype(np.float32) / 255.
 pred = VAE.predict(road_img)
 result = []
 
-for i in range(road_area_Ptrans.shape[0]):
+for i in range(road_img.shape[0]):
     r, g, b = cv2.split(road_area_Ptrans[i]-pred[i])
     img_flat = (r+g+b).flatten()
     if np.percentile(img_flat, 80, method='higher') >= P._VAE_threshold:
-        result.append(i+1)
+        result.append(i)
 
 # result is the road lane that obstacles are on
 print(result)
+'''
+'''
+for r in range(len(road_img)):
+    if not(r in result):
+        cv2.imshow('road_img'+str(r), cv2.resize(road_img[r], (512, 512)))
+        cv2.imshow('pred'+str(r), cv2.resize(pred[r], (512, 512)))
+cv2.waitKey(0)
+'''
