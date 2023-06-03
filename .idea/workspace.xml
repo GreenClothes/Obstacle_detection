@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1f4c10f-ed8a-4866-bad0-d017edbcc478" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AWS_detection/lib/perspective_trans.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/Lane-detection-with-OpenCV/ROI_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Lane-detection-with-OpenCV/ROI_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/ROI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/ROI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/param.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/read_txt.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/read_txt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/perspective_trans.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/perspective_trans.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +45,7 @@
       <recent name="C:\Users\pc\Desktop\Obstacle_detection\Lane-detection-with-OpenCV\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.main (1)">
     <configuration name="ROI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="detection" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.ROI" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.ROI_test (1)" />
         <item itemvalue="Python.ROI_test" />
-        <item itemvalue="Python.ROI" />
-        <item itemvalue="Python.main (1)" />
       </list>
     </recent_temporary>
   </component>
