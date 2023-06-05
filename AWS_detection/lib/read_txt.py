@@ -1,9 +1,6 @@
 import numpy as np, cv2
 
 def _Read_coordinate(file_path, img_h, img_w, road_mark=False):
-    #img_h = img.shape[0]
-    #img_w = img.shape[1]
-    #print('img_h :', img_h, 'img_w :', img_w)
 
     try:
         f = open(file_path, 'r')
@@ -24,14 +21,20 @@ def _Read_coordinate(file_path, img_h, img_w, road_mark=False):
         line[4] = int(line[4] * img_h)
 
         # line[0] : class, 0 : dummy data for dimension
-        # Sequence : aleft upper, right upper, right lower, left lower
-        coordinate = np.array([[line[0], 0],
-                               [line[1] - line[3]//2, line[2] - line[4]//2],
-                               [line[1] + line[3]//2, line[2] - line[4]//2],
-                               [line[1] + line[3]//2, line[2] + line[4]//2],
-                               [line[1] - line[3]//2, line[2] + line[4]//2]], np.int32)
-        coordinate_list.append(coordinate)
+        # Sequence : left upper, right upper, right lower, left lower
+        if road_mark:
+            coordinate = np.array([[line[0], 0],
+                                   [line[1] - line[3]//2, line[2] - line[4]//2],
+                                   [line[1] + line[3]//2, line[2] - line[4]//2],
+                                   [line[1] + line[3]//2, line[2] + line[4]//2],
+                                   [line[1] - line[3]//2, line[2] + line[4]//2]], np.int32)
+            coordinate_list.append(coordinate)
+        else:
+            coordinate = np.array([[line[1] - line[3] // 2, line[2] - line[4] // 2],
+                                   [line[1] + line[3] // 2, line[2] - line[4] // 2],
+                                   [line[1] + line[3] // 2, line[2] + line[4] // 2],
+                                   [line[1] - line[3] // 2, line[2] + line[4] // 2]], np.int32)
+            coordinate_list.append(coordinate)
     f.close()
 
-    #print(*coordinate_list)
     return coordinate_list
