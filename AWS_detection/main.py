@@ -1,5 +1,4 @@
 import numpy as np
-
 import cv2
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -26,15 +25,15 @@ from lib.perspective_trans import _Ptrans
 import lib.param as P
 
 from yolov5.detect import run
-'''
+
 # Detect cars
 run(weights=P._source_car_weights_dir, source=P._source_img_dir, save_txt=P._save_txt,
     classes=P._classes, nosave=P._nosave, name=P._save_car_name)
 
 # Detect road marks
 run(weights=P._source_roadmark_weights_dir, source=P._source_img_dir, save_txt=P._save_txt,
-    nosave=P._nosave, name=P._save_road_mark_name)
-'''
+    nosave=P._nosave, name=P._save_road_mark_name, conf_thres=P._conf_thres)
+
 # Get bboxes coordinates
 car_bbox_dir = os.getcwd()+P._detect_result_dir+P._save_car_name+'\\labels\\'
 car_bbox = os.listdir(car_bbox_dir)
@@ -42,35 +41,48 @@ bbox_car_xy = _Read_coordinate(file_path=car_bbox_dir+car_bbox[0], img_h=P._img_
 
 roadmark_bbox_dir = os.getcwd()+P._detect_result_dir+P._save_road_mark_name+'\\labels\\'
 roadmark_bbox = os.listdir(roadmark_bbox_dir)
-bbox_roadmark_xy = _Read_coordinate(file_path=roadmark_bbox_dir+roadmark_bbox[0], img_h=P._img_h, img_w=P._img_w)
+bbox_roadmark_xy = _Read_coordinate(file_path=roadmark_bbox_dir+roadmark_bbox[0], img_h=P._img_h, img_w=P._img_w, road_mark=True)
 
 # Determine area for detecting
 road_area = _XY2ROI(bbox_car_xy, bbox_roadmark_xy)
+
 '''
+# check road area is appropriate
+img = cv2.imread(_source_img_dir, cv2.IMREAD_COLOR)
+mask = np.zeros((P._img_h, P._img_w, 3), np.int32)
+road_area = np.array(road_area, np.int32)
+cv2.fillPoly(mask, road_area, (255, 255, 255))
+masked_img = cv2.bitwise_and(np.array(img, np.uint8), np.array(mask, np.uint8))
+cv2.imshow('mask', masked_img)
+cv2.waitKey(0)
+'''
+
 # Perspective transforming to road areas for VAE
 road_area_Ptrans = _Ptrans(road_area)
 
 # VAE for detecting obstacles
 VAE = _Load_model()
-VAE.load_weights(P._VAE_weights_dir)
+VAE.load_weights(P._VAE_weights_dir).expect_partial()
 road_img = np.array(road_area_Ptrans)
 road_img = road_img.astype(np.float32) / 255.
 pred = VAE.predict(road_img)
 result = []
 
 for i in range(road_img.shape[0]):
-    r, g, b = cv2.split(road_area_Ptrans[i]-pred[i])
+    r, g, b = cv2.split(pred[i]-road_img[i])
     img_flat = (r+g+b).flatten()
+    #print(np.percentile(img_flat, 80, method='higher'))
     if np.percentile(img_flat, 80, method='higher') >= P._VAE_threshold:
         result.append(i)
 
 # result is the road lane that obstacles are on
 print(result)
-'''
+
 '''
 for r in range(len(road_img)):
-    if not(r in result):
+    if r in result:
         cv2.imshow('road_img'+str(r), cv2.resize(road_img[r], (512, 512)))
         cv2.imshow('pred'+str(r), cv2.resize(pred[r], (512, 512)))
+        #cv2.imshow('sub'+str(r), cv2.resize(pred[i]-road_img[r], (512, 512)))
 cv2.waitKey(0)
 '''
