@@ -13,6 +13,7 @@ import os
 import platform
 import random
 import re
+import shutil
 import signal
 import subprocess
 import sys
@@ -1091,17 +1092,28 @@ def apply_classifier(x, model, img, im0):
 
 def increment_path(path, exist_ok=False, sep='', mkdir=False):
     # Increment file or directory path, i.e. runs/exp --> runs/exp{sep}2, runs/exp{sep}3, ... etc.
+    '''
     path = Path(path)  # os-agnostic
     if path.exists() and not exist_ok:
-        path, suffix = (path.with_suffix(''), path.suffix) if path.is_file() else (path, '')
-
+        #path, suffix = (path.with_suffix(''), path.suffix) if path.is_file() else (path, '')
+        suffix = ''
         # Method 1
-        for n in range(2, 9999):
+        for n in range(1, 9999):
             p = f'{path}{sep}{n}{suffix}'  # increment path
             if not os.path.exists(p):  #
                 break
         path = Path(p)
-
+    '''
+    suffix = ''
+    # Method 1
+    for n in range(1, 9999):
+        if n == 11:
+            shutil.rmtree(path.parent)
+            n = 1
+        p = f'{path}{sep}{n}{suffix}'  # increment path
+        if not os.path.exists(p):  #
+            break
+    path = Path(p)
         # Method 2 (deprecated)
         # dirs = glob.glob(f"{path}{sep}*")  # similar paths
         # matches = [re.search(rf"{path.stem}{sep}(\d+)", d) for d in dirs]
