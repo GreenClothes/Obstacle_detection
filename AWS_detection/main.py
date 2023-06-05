@@ -25,7 +25,7 @@ from lib.perspective_trans import _Ptrans
 import lib.param as P
 
 from yolov5.detect import run
-
+'''
 # Detect cars
 run(weights=P._source_car_weights_dir, source=P._source_img_dir, save_txt=P._save_txt,
     classes=P._classes, nosave=P._nosave, name=P._save_car_name)
@@ -33,7 +33,7 @@ run(weights=P._source_car_weights_dir, source=P._source_img_dir, save_txt=P._sav
 # Detect road marks
 run(weights=P._source_roadmark_weights_dir, source=P._source_img_dir, save_txt=P._save_txt,
     nosave=P._nosave, name=P._save_road_mark_name, conf_thres=P._conf_thres)
-
+'''
 # Get bboxes coordinates
 car_bbox_dir = os.getcwd()+P._detect_result_dir+P._save_car_name+'\\labels\\'
 car_bbox = os.listdir(car_bbox_dir)
@@ -71,18 +71,18 @@ result = []
 for i in range(road_img.shape[0]):
     r, g, b = cv2.split(pred[i]-road_img[i])
     img_flat = (r+g+b).flatten()
-    #print(np.percentile(img_flat, 80, method='higher'))
+    print(np.percentile(img_flat, 80, method='higher'))
     if np.percentile(img_flat, 80, method='higher') >= P._VAE_threshold:
         result.append(i)
 
 # result is the road lane that obstacles are on
 print(result)
+for r in result:
+    cv2.imwrite(P._detect_img_save+'obstacle'+str(r)+'.png', cv2.resize(road_img[r], (512, 512)))
 
-'''
 for r in range(len(road_img)):
     if r in result:
         cv2.imshow('road_img'+str(r), cv2.resize(road_img[r], (512, 512)))
         cv2.imshow('pred'+str(r), cv2.resize(pred[r], (512, 512)))
         #cv2.imshow('sub'+str(r), cv2.resize(pred[i]-road_img[r], (512, 512)))
 cv2.waitKey(0)
-'''
