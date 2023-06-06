@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e1f4c10f-ed8a-4866-bad0-d017edbcc478" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/param.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/param.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle0.png" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle3.png" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle4.png" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AWS_detection/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
