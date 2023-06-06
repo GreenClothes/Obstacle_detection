@@ -71,18 +71,24 @@ result = []
 for i in range(road_img.shape[0]):
     r, g, b = cv2.split(pred[i]-road_img[i])
     img_flat = (r+g+b).flatten()
-    print(np.percentile(img_flat, 80, method='higher'))
+    #print(np.percentile(img_flat, 80, method='higher'))
     if np.percentile(img_flat, 80, method='higher') >= P._VAE_threshold:
         result.append(i)
 
 # result is the road lane that obstacles are on
-print(result)
-for r in result:
-    cv2.imwrite(P._detect_img_save+'obstacle'+str(r)+'.png', cv2.resize(road_img[r], (512, 512)))
+#print(result)
 
+for r in result:
+    save_img = cv2.cvtColor(road_img[r], cv2.COLOR_BGR2RGB) * 255
+    save_img = save_img.astype(np.uint8)
+    cv2.imwrite(P._detect_img_save+'obstacle'+str(r)+'.png', cv2.resize(save_img, (512, 512)))
+'''
 for r in range(len(road_img)):
     if r in result:
         cv2.imshow('road_img'+str(r), cv2.resize(road_img[r], (512, 512)))
         cv2.imshow('pred'+str(r), cv2.resize(pred[r], (512, 512)))
+        print(road_img[r].shape)
+
         #cv2.imshow('sub'+str(r), cv2.resize(pred[i]-road_img[r], (512, 512)))
 cv2.waitKey(0)
+'''
