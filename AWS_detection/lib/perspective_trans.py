@@ -12,10 +12,10 @@ def _Ptrans(road):
         bottomLeft = r[3]
 
         before_trans = np.float32([topLeft, topRight, bottomRight, bottomLeft])
-        after_trans = np.float32([[0, 0], [128, 0], [128, 128], [0, 128]])
+        after_trans = np.float32([[0, 0], [64, 0], [64, 64], [0, 64]])
 
         trans_mtrx = cv2.getPerspectiveTransform(before_trans, after_trans)
 
-        trans_img.append(cv2.warpPerspective(img, trans_mtrx, (128, 128)))
+        trans_img.append(cv2.warpPerspective(img, trans_mtrx, (64, 64)))
 
     return trans_img
