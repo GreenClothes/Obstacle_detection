@@ -15,10 +15,12 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import LearningRateScheduler
 
+from alibi_detect.saving import load_detector
+
 import os
 from glob import glob
 
-from lib.VAEmodel import _Load_model
+# from lib.VAEmodel import _Load_model
 from lib.read_txt import _Read_coordinate
 from lib.ROI import _XY2ROI
 from lib.perspective_trans import _Ptrans
@@ -61,27 +63,39 @@ cv2.waitKey(0)
 road_area_Ptrans = _Ptrans(road_area)
 
 # VAE for detecting obstacles
-VAE = _Load_model()
-VAE.load_weights(P._VAE_weights_dir).expect_partial()
-road_img = np.array(road_area_Ptrans)
-road_img = road_img.astype(np.float32) / 255.
-pred = VAE.predict(road_img)
-result = []
+# filepath = 'C:/Users/pc/Desktop/road/new/'
+od = load_detector(P._VAE_weights_dir)
 
-for i in range(road_img.shape[0]):
-    r, g, b = cv2.split(pred[i]-road_img[i])
-    img_flat = (r+g+b).flatten()
-    #print(np.percentile(img_flat, 80, method='higher'))
-    if np.percentile(img_flat, 80, method='higher') >= P._VAE_threshold:
-        result.append(i)
+test_pred = od.predict(
+    road_area_Ptrans,
+    outlier_type='instance',
+    return_feature_score=True,
+    return_instance_score=True
+)
+
+# target = np.zeros(test_img.shape[0],).astype(int)
+# labels = ['normal', 'outlier']
+# plot_instance_score(test_pred, target, labels, 0.002)
+
+# print(test_pred['data']['is_outlier'])
+
 
 # result is the road lane that obstacles are on
 #print(result)
-
+result = test_pred['data']['is_outlier']
+for r in range(len(result)):
+    if result[r]:
+        save_img = cv2.cvtColor(road_area_Ptrans[r], cv2.COLOR_BGR2RGB) * 255
+        save_img = save_img.astype(np.uint8)
+        cv2.imwrite(P._detect_img_save + 'obstacle' + str(r) + '.png', cv2.resize(save_img, (512, 512)))
+    else:
+        print('no obstacle')
+'''
 for r in result:
     save_img = cv2.cvtColor(road_img[r], cv2.COLOR_BGR2RGB) * 255
     save_img = save_img.astype(np.uint8)
     cv2.imwrite(P._detect_img_save+'obstacle'+str(r)+'.png', cv2.resize(save_img, (512, 512)))
+'''
 '''
 for r in range(len(road_img)):
     if r in result:
