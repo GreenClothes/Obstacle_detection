@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1f4c10f-ed8a-4866-bad0-d017edbcc478" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/detection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/detection.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle0.png" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle3.png" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle4.png" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/Obstacle/obstacle4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/ROI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/ROI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/VAEmodel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/param.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/param.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AWS_detection/lib/perspective_trans.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/lib/perspective_trans.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AWS_detection/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/AWS_detection/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +40,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pc/Desktop/Obstacle_detection/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pc/Desktop/Obstacle_detection&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
@@ -92,7 +93,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ROI_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="VAE" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="detection" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -100,11 +101,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lane-detection-with-OpenCV" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AWS_detection/lib" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lane-detection-with-OpenCV/ROI_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AWS_detection/lib/VAE.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,10 +159,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.VAE" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.ROI" />
         <item itemvalue="Python.ROI_test (1)" />
-        <item itemvalue="Python.ROI_test" />
       </list>
     </recent_temporary>
   </component>
@@ -186,15 +187,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/AWS_detection/main.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
